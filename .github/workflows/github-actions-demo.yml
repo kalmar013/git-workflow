@@ -1,0 +1,29 @@
+name: Python application test
+
+on: [push]
+
+jobs:
+  check-python-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+
+  lint-application:
+    runs-on: ubuntu-latest
+    needs: check-python-version
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install Pylint
+        run: pip install pylint
+      - name: Run Pylint
+        run: pylint app.py
