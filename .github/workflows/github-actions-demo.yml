@@ -25,5 +25,6 @@ jobs:
           python-version: '3.8'
       - name: Install Pylint
         run: pip install pylint
+        run: pip install flask
       - name: Run Pylint
         run: pylint app.py
